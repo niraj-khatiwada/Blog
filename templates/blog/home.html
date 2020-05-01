@@ -2,8 +2,21 @@
 <!--  -->
 {% block content %}
 <div class="blog-home">
-  {% for user in users %}
-  <h1>{{user.name}}</h1>
+  {% for post in posts %}
+  <div class="card mb-3">
+    <div class="card-header d-flex justify-content-between">
+      <h5>{{post.post_title}}</h5>
+      <span class="text-muted">{{post.posted_date|date:"d M, Y"}}</span>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        {{post.post_text}}
+      </p>
+    </div>
+    <div class="card-footer text-muted">
+      Posted By: {{post.author}}
+    </div>
+  </div>
   {% endfor %}
 </div>
 {% endblock %}

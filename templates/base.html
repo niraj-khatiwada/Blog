@@ -14,45 +14,19 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{% static 'CSS/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'CSS/base.css' %}" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">Django Blog</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto w-100">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'blog-home' %}"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'blog-about' %}"
-              >About <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item ml-auto">
-            <div>
-              <button class="btn btn-light mx-1">Login</button>
-              <button class="btn btn-light mx-1">Register</button>
-            </div>
-          </li>
-        </ul>
+    {% include "utils/navbar.html"%}
+    <div class="container Base">
+      <div class="row mt-4 py-4">
+        <div class="col-md-8">
+          {% block content %} {% endblock %}
+        </div>
+        <div class="col d-none d-md-block">
+          {% include "utils/sidebar.html" %}
+        </div>
       </div>
-    </nav>
-    <div class="container-fluid">
-      {% block content %} {% endblock %}
     </div>
     <!-- Bootstrap JS -->
     <script
