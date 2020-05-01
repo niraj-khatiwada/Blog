@@ -1,6 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
+users = [
+    {
+        'name': "Niraj Khatiwada",
+        'age': 23
+    },
+    {
+        'name': "Chandra Kala Khatiwada",
+        'age': 40
+    },
+]
 
 
 def home(request):
-    return HttpResponse("<h1>Hello World </h1>")
+    context = {
+        'users': users
+    }
+    return render(request, "home.html", context)
