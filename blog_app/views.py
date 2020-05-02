@@ -1,22 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import BlogPostModel
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-
-
-# def home(request):
-#     context = {
-#         'posts': BlogPostModel.objects.all()
-#     }
-#     return render(request, "blog/home.html", context)
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 def about(request):
-    return render(request, "blog/about.html")
-
-# @login_required()
-# def create_post(request):
-#     if request.method == "POST":
+    return render(request, "blog_app/about.html")
 
 
 class Home(ListView):
@@ -47,6 +36,17 @@ class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class PostDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = BlogPostModel
+    success_url = "/"
 
     def test_func(self):
         post = self.get_object()
