@@ -1,20 +1,29 @@
-{% extends "base.html" %} {% block title %} Blog {% endblock %}
+{% extends "base.html" %}
+<!--  -->
+{% block title %} Blog {% endblock %}
 <!--  -->
 {% block content %}
 <div class="blog-home">
   {% for post in posts %}
   <div class="card mb-3">
-    <div class="card-header d-flex justify-content-between">
-      <h5>{{post.post_title}}</h5>
-      <span class="text-muted">{{post.posted_date|date:"d M, Y"}}</span>
+    <div class="card-header d-flex justify-content-between p-2">
+      <div>
+        <img
+          src="{{ post.author.profile.profile_image.url }}"
+          alt=""
+          class="home-profile-image"
+        />
+        <h5 class="post-title">{{post.post_title}}</h5>
+      </div>
     </div>
     <div class="card-body">
       <p class="card-text">
         {{post.post_text}}
       </p>
     </div>
-    <div class="card-footer text-muted">
-      Posted By: {{post.author}}
+    <div class="card-footer text-muted post-card-footer">
+      Posted By: {{post.author}} &nbsp
+      <span class="text-muted">{{post.posted_date|date:"d M, Y"}}</span>
     </div>
   </div>
   {% endfor %}

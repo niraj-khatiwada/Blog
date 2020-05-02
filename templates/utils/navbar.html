@@ -27,7 +27,13 @@
         <div>
           {% if user.is_authenticated %}
           <div class="profile" style="display: inline; margin-right: 0.5rem;">
-            <span>{{user}}</span>
+            <span>
+              {% if user.profile.first_name %}
+              <!--  -->
+              {{user.profile.first_name}}
+              <!--  -->
+              {% else %} {{ user.username }} {% endif %}
+            </span>
             <a href="{% url 'profile' %}" style="text-decoration: none;">
               <img
                 src="{{ user.profile.profile_image.url }}"

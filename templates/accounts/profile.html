@@ -6,7 +6,7 @@
 
 <div class="card mb-3">
   <div class="row no-gutters">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <img
         src="{{ user.profile.profile_image.url }}"
         class="card-img p-2"
@@ -17,13 +17,25 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">
+          {% if user.profile.first_name and user.profile.last_name %}
           {{user.profile.first_name}} {{user.profile.last_name}}
+          <!--  -->
+          {% endif %}
         </h5>
-        <p class="card-text">{{user.profile.description}}</p>
+
+        <p class="card-text">
+          {% if user.profile.description %} {{user.profile.description}}
+        </p>
+        {% endif %}
         <p class="card-text">
           <small class="text-muted">{{user.email}}</small>
         </p>
       </div>
+    </div>
+    <div class="col-md-1 p-3">
+      <a href="{% url 'edit-profile' %}">
+        <img src="https://image.flaticon.com/icons/svg/526/526127.svg" alt="" />
+      </a>
     </div>
   </div>
 </div>

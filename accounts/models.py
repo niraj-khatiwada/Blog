@@ -12,10 +12,10 @@ class Profile(models.Model):
         upload_to="accounts/profile_image", default="default.jpg", blank=True, null=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.user} Profile"
 
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         image = Image.open(self.profile_image.path)
         if (image.height > 300 and image.width > 300):
             output_size = (300, 300)
