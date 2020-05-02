@@ -23,14 +23,14 @@
           >About <span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item ml-auto">
+      <li class="nav-item ml-auto d-flex align-items-center">
         <div>
           {% if user.is_authenticated %}
           <div class="profile" style="display: inline; margin-right: 0.5rem;">
             <span>{{user}}</span>
             <a href="{% url 'profile' %}" style="text-decoration: none;">
               <img
-                src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914__340.png"
+                src="{{ user.profile.profile_image.url }}"
                 alt="..."
                 style="height: 30px; width: 30px; border-radius: 100%;"
               />

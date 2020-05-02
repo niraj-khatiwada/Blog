@@ -8,19 +8,18 @@
   <div class="row no-gutters">
     <div class="col-md-4">
       <img
-        src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914__340.png"
+        src="{{ user.profile.profile_image.url }}"
         class="card-img p-2"
         alt="..."
-        style="height: 200px; width: 200px; border-radius: 100%;"
+        style="height: 150px; width: 150px; border-radius: 100%;"
       />
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{user}}</h5>
-        <p class="card-text">
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
-        </p>
+        <h5 class="card-title">
+          {{user.profile.first_name}} {{user.profile.last_name}}
+        </h5>
+        <p class="card-text">{{user.profile.description}}</p>
         <p class="card-text">
           <small class="text-muted">{{user.email}}</small>
         </p>
