@@ -25,15 +25,16 @@
       </li>
       <li class="nav-item ml-auto">
         <div>
-          <button class="btn btn-light mx-1 btn-sm">Login</button>
-          <button
-            class="btn btn-light mx-1 btn-sm"
-            type="button"
-            data-toggle="modal"
-            data-target="#exampleModalCenter"
-          >
-            Sign Up
-          </button>
+          <a href="{% url 'login' %}">
+            <button class="btn btn-light mx-1 btn-sm">
+              Login
+            </button>
+          </a>
+          <a href="{% url 'signup' %}">
+            <button class="btn btn-light mx-1 btn-sm">
+              Sign Up
+            </button>
+          </a>
         </div>
       </li>
     </ul>

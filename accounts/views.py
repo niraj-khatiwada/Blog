@@ -16,6 +16,6 @@ def signup(request):
             username = request.POST.get("username")
             messages.success(
                 request, f'Account creation successful for {username}')
-            return redirect("blog-home")
+            return redirect("login")
 
     return render(request, "blog/signup.html", context)
