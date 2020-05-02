@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import SignUpForm
+from django.contrib.auth.decorators import login_required
 
 
 def signup(request):
@@ -18,4 +19,9 @@ def signup(request):
                 request, f'Account creation successful for {username}')
             return redirect("login")
 
-    return render(request, "blog/signup.html", context)
+    return render(request, "accounts/signup.html", context)
+
+
+@login_required()
+def profile(request):
+    return render(request, "accounts/profile.html")

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+<!--  -->
+{% block title %} Profile {% endblock %}
+<!--  -->
+{% block content %}
+
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img
+        src="https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914__340.png"
+        class="card-img p-2"
+        alt="..."
+        style="height: 200px; width: 200px; border-radius: 100%;"
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{user}}</h5>
+        <p class="card-text">
+          This is a wider card with supporting text below as a natural lead-in
+          to additional content. This content is a little bit longer.
+        </p>
+        <p class="card-text">
+          <small class="text-muted">{{user.email}}</small>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
