@@ -128,7 +128,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
+# https://docs.djangoproject.com/en/pyth3.0/howto/static-files/
 
 
 MEDIA_URL = "/media/"

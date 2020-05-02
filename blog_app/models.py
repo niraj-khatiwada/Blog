@@ -13,8 +13,5 @@ class BlogPostModel(models.Model):
     def __str__(self):
         return f'{self.post_title}, {self.author}'
 
-    class Meta:
-        db_table = "blog"
-
     def get_absolute_url(self):
         return reverse("blog-home")
