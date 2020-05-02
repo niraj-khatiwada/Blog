@@ -10,6 +10,10 @@
     </a>
     <h5 class="ml-4 d-flex align-items-center">Write something...</h5>
   </div>
+  <h5 class="text-center bg-info p-2 rounded">
+    Posts from {{view.kwargs.username}} | Total posts:
+    {{page_obj.paginator.count}}
+  </h5>
   {% for post in posts %}
   <div class="card mb-3 card-div">
     <div class="d-flex justify-content-between p-2">
@@ -32,7 +36,9 @@
     </div>
     <div class="card-footer text-muted post-card-footer">
       <div>
-        Posted By:<a href="{% url 'all-post-of-user' username=post.author %}">
+        Posted By:<a
+          href="{% url 'all-post-of-user' username=post.author.username %}"
+        >
           {{post.author}} </a
         >&nbsp
         <span class="text-muted">{{post.posted_date|date:"d M, Y"}}</span>

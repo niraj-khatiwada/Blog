@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import BlogPostModel
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.models import User
 
 
 def about(request):
@@ -13,6 +14,7 @@ class Home(ListView):
     template_name = "blog_app/home.html"
     context_object_name = "posts"
     ordering = ['-posted_date']
+    paginate_by = 5
 
 
 class PostDetail(DetailView):
@@ -53,3 +55,14 @@ class PostDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+class AllPostOfUser(ListView):
+    model = BlogPostModel
+    template_name = "blog_app/all_post_of_user.html"
+    context_object_name = "posts"
+    paginate_by = 5
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return BlogPostModel.objects.filter(author=user).order_by("-posted_date")
