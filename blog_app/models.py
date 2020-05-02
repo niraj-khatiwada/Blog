@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class BlogPostModel(models.Model):
@@ -14,3 +15,6 @@ class BlogPostModel(models.Model):
 
     class Meta:
         db_table = "blog"
+
+    def get_absolute_url(self):
+        return reverse("blog-home")

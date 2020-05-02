@@ -1,8 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import BlogPostModel
-from django.contrib.auth.decorators import login_required
-
-from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 
 # def home(request):
@@ -30,3 +29,27 @@ class Home(ListView):
 class PostDetail(DetailView):
     model = BlogPostModel
     context_object_name = "post"
+
+
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = BlogPostModel
+    fields = ["post_title", "post_text"]
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class PostUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = BlogPostModel
+    fields = ["post_title", "post_text"]
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False

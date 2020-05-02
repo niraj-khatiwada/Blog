@@ -14,14 +14,14 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">
+        <h5 class="card-title m-0">
           {% if user.profile.first_name and user.profile.last_name %}
           {{user.profile.first_name}} {{user.profile.last_name}}
           <!--  -->
-          {% endif %}
+          {% endif %} (<small class="text-muted">{{user.username}}</small>)
         </h5>
 
-        <p class="card-text">
+        <p class="card-text mt-2">
           {% if user.profile.description %} {{user.profile.description}}
         </p>
         {% endif %}
