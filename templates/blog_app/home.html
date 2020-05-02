@@ -2,19 +2,22 @@
 <!--  -->
 {% block title %} Blog {% endblock %}
 <!--  -->
-{% block content %}
+{% block content %} {% include 'utils/blank-post-form.html' %}
 <div class="blog-home">
   {% for post in posts %}
   <div class="card mb-3">
-    <div class="card-header d-flex justify-content-between p-2">
+    <div class="d-flex justify-content-between p-2">
       <div>
         <img
           src="{{ post.author.profile.profile_image.url }}"
           alt=""
           class="home-profile-image"
         />
-        <h5 class="post-title">{{post.post_title}}</h5>
+        <a href="{% url 'post-detail' pk=post.id %}">
+          <h5 class="post-title">{{post.post_title}}</h5>
+        </a>
       </div>
+      <hr />
     </div>
     <div class="card-body">
       <p class="card-text">
