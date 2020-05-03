@@ -5,10 +5,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.models import User
 
 
-def about(request):
-    return render(request, "blog_app/about.html")
-
-
 class Home(ListView):
     model = BlogPostModel
     template_name = "blog_app/home.html"
